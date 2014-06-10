@@ -29,6 +29,8 @@ def filetime_from_git(content):
     # 4. file is managed, but dirty
     #    date: first commit time, update: fs time
     path = content.source_path
+    if not path:
+        return
     status, stdout, stderr = git.execute(['git', 'ls-files', path, '--error-unmatch'],
             with_extended_output=True, with_exceptions=False)
     if status != 0:
